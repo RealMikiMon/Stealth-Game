@@ -5,12 +5,13 @@ public class EnemyPatrol : MonoBehaviour
     public Transform EdgedetectionPoint;
     public LayerMask WhatIsGround;
     public float Speed;
+    public float distance = 0.5f;
 
     void Update()
     {
         Move();
 
-        if (EdgeDetected()) Flip();
+        if (WallDetected()) Flip();
     }
 
     private void Move()
@@ -18,11 +19,11 @@ public class EnemyPatrol : MonoBehaviour
         transform.Translate(transform.right * Speed * Time.deltaTime, Space.World);
     }
 
-    private bool EdgeDetected()
+    private bool WallDetected()
     {
-        RaycastHit2D hit = Physics2D.Raycast(EdgedetectionPoint.position, Vector2.down, 1.5f, WhatIsGround);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position,transform.right,distance,WhatIsGround);
 
-        return (hit.collider == null);
+        return hit.collider != null;
     }
 
     private void Flip()
