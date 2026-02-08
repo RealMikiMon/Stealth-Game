@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    private float Speed = 5.0f;
+    private float speed = 5.0f;
 
     Rigidbody2D rigidbody;
     private bool isMoving;
@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
         // type of controls the action is bound to
         var moveDir = value.Get<Vector2>();
 
-        Vector2 velocity = moveDir * Speed;
+        Vector2 velocity = moveDir * speed;
         rigidbody.linearVelocity = velocity;
 
         isMoving = (velocity.magnitude > 0.01f);
