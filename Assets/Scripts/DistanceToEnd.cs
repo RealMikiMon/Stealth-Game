@@ -19,7 +19,7 @@ public class DistanceToEnd : MonoBehaviour
 
     private void Win()
     {
-        if (distance <= 0.5)
+        if (distance <= 1)
         {
             SceneHandler.Instance.ChangeScene();
         }
