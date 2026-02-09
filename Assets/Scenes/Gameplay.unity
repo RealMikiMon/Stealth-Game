@@ -332,8 +332,6 @@ GameObject:
   - component: {fileID: 503711693}
   - component: {fileID: 503711692}
   - component: {fileID: 503711691}
-  - component: {fileID: 503711695}
-  - component: {fileID: 503711694}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -488,42 +486,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &503711694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 503711687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a30fb4c2f7b3b904aa8f94dd23b9ae69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VisionGizmo
-  VisionRange: 2
-  PlayerDistance: 1
---- !u!95 &503711695
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 503711687}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b45e6a172f455cd43999543d86f6f5f0, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1050,8 +1012,9 @@ GameObject:
   - component: {fileID: 619275483}
   - component: {fileID: 619275487}
   - component: {fileID: 619275486}
-  - component: {fileID: 619275485}
-  - component: {fileID: 619275484}
+  - component: {fileID: 619275489}
+  - component: {fileID: 619275488}
+  - component: {fileID: 619275490}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -1133,47 +1096,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &619275484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619275481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 865c5a8b43665ba4b9395e279102f368, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VisionDetector
-  WhatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 256
-  WhatIsVisible:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  DetectionRange: 2.2
-  VisionAngle: 45
---- !u!114 &619275485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619275481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 465fcebf556cfaa4e81fc34654e1b5e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyPatrol
-  PointA: {fileID: 1252123069}
-  PointB: {fileID: 617024640}
-  EdgeDetectionPoint: {fileID: 473472530}
-  WhatIsGround:
-    serializedVersion: 2
-    m_Bits: 520
-  Speed: 2
-  ArriveDistance: 0.1
-  WallCheckDistance: 0.5
 --- !u!50 &619275486
 Rigidbody2D:
   serializedVersion: 5
@@ -1247,6 +1169,58 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.35, y: 0.43}
   m_EdgeRadius: 0
+--- !u!114 &619275488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619275481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a30fb4c2f7b3b904aa8f94dd23b9ae69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VisionGizmo
+  VisionRange: 2
+  PlayerDistance: 0
+--- !u!114 &619275489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619275481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17413bb1de588c74b99ba64abdf71e36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
+  PointA: {fileID: 1252123069}
+  PointB: {fileID: 617024640}
+  Speed: 2
+  ArriveDistance: 0.1
+--- !u!95 &619275490
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619275481}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b45e6a172f455cd43999543d86f6f5f0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &704710741
 GameObject:
   m_ObjectHideFlags: 0
