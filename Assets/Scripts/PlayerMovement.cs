@@ -13,9 +13,13 @@ public class PlayerMovement : MonoBehaviour
 
     public bool IsMoving => isMoving;
 
+    private Vector2 lastPosition;
+    public float distanceTraveled;
+
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        lastPosition = rigidbody.position;
     }
 
     public void OnMove(InputValue value)
@@ -43,5 +47,15 @@ public class PlayerMovement : MonoBehaviour
         // Usage example on how to save score
         PlayerPrefs.SetInt("Score", score);
         score = PlayerPrefs.GetInt("Score");
+    }
+
+    void FixedUpdate()
+    {
+        if (isMoving)
+        {
+            Vector2 currentPosition = rigidbody.position;
+            distanceTraveled += Vector2.Distance(lastPosition, currentPosition);
+            lastPosition = currentPosition;
+        }
     }
 }
