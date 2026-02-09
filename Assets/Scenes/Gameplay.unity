@@ -313,12 +313,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 473472529}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.729535, w: 0.6839435}
-  m_LocalPosition: {x: 0.35600024, y: 0.017000258, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.8880467, y: -3.6427116, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 619275482}
+  m_Father: {fileID: 2108089968}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &503711687
 GameObject:
@@ -332,7 +332,8 @@ GameObject:
   - component: {fileID: 503711693}
   - component: {fileID: 503711692}
   - component: {fileID: 503711691}
-  - component: {fileID: 503711689}
+  - component: {fileID: 503711695}
+  - component: {fileID: 503711694}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -355,26 +356,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 704710742}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &503711689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 503711687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 865c5a8b43665ba4b9395e279102f368, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VisionDetector
-  WhatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 256
-  WhatIsVisible:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  DetectionRange: 2.2
-  VisionAngle: 45
 --- !u!50 &503711691
 Rigidbody2D:
   serializedVersion: 5
@@ -507,6 +488,42 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &503711694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503711687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a30fb4c2f7b3b904aa8f94dd23b9ae69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VisionGizmo
+  VisionRange: 2
+  PlayerDistance: 1
+--- !u!95 &503711695
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503711687}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b45e6a172f455cd43999543d86f6f5f0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -777,12 +794,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 567589344}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.77, y: 0.15, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.6938322, w: 0.7201367}
+  m_LocalPosition: {x: -2.288743, y: 3.4250464, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 0.75279}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2108089968}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &567589346
 SpriteRenderer:
@@ -1054,8 +1071,7 @@ Transform:
   m_LocalPosition: {x: 4.9, y: -2.93, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 473472530}
+  m_Children: []
   m_Father: {fileID: 2108089968}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -93.695}
 --- !u!212 &619275483
@@ -4963,7 +4979,7 @@ GameObject:
   - component: {fileID: 1701691623}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5315,7 +5331,7 @@ Transform:
   - {fileID: 617024640}
   - {fileID: 1252123069}
   - {fileID: 619275482}
-  - {fileID: 567589345}
+  - {fileID: 473472530}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -87.868}
 --- !u!1660057539 &9223372036854775807
@@ -5325,6 +5341,7 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 595306067}
   - {fileID: 1701691617}
+  - {fileID: 567589345}
   - {fileID: 2108089968}
   - {fileID: 704710742}
   - {fileID: 1865967370}
