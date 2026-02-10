@@ -31,4 +31,14 @@ public class SceneHandler : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void OnEnter()
+    {
+        ChangeScene();
+    }
+
+    public void OnExit()
+    {
+        Application.Quit();
+    }
 }
