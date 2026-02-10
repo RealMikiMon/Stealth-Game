@@ -2,62 +2,79 @@ using UnityEngine;
 
 public class IdleBehaviour : StateMachineBehaviour
 {
-    public float StayTime;
-    public float VisionRange;
+    [Header("Idle")]
+    public float StayTime = 3f;
+    public float VisionRange = 5f;
+
+    [Header("Scan (2D)")]
+    public float ScanAngle = 90f;       
+    public float ScanSpeed = 1.5f;      
+    public float EdgePause = 0.4f;      
+    public float SmoothFactor = 2f;     
 
     private float timer;
-    private Transform player;
+    private float scanTimer;
+    private float pauseTimer;
+    private bool pausing;
 
-    // OnStateEnter is called when a transition starts and
-    // the state machine starts to evaluate this state
+    private Transform player;
+    private Quaternion startRotation;
+
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        timer = 0.0f;
+        timer = 0f;
+        scanTimer = 0f;
+        pauseTimer = 0f;
+        pausing = false;
+
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        startRotation = animator.transform.rotation;
     }
 
-    // OnStateUpdate is called on each Update frame between
-    // OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // Check triggers
-        var playerClose = IsPlayerClose(animator.transform);
-        var timeUp = IsTimeUp();
+        Scan(animator.transform);
+
+        bool playerClose = IsPlayerClose(animator.transform);
+        bool timeUp = IsTimeUp();
 
         animator.SetBool("IsChasing", playerClose);
         animator.SetBool("IsPatroling", timeUp);
     }
 
-    // OnStateExit is called when a transition ends and
-    // the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
+    private void Scan(Transform transform)
+    {
+        if (pausing)
+        {
+            pauseTimer += Time.deltaTime;
+            if (pauseTimer >= EdgePause)
+            {
+                pausing = false;
+                pauseTimer = 0f;
+            }
+            return;
+        }
 
-    //}
-
-    // OnStateMove is called right after Animator.OnAnimatorMove()
-    //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that processes and affects root motion
-    //}
-
-    // OnStateIK is called right after Animator.OnAnimatorIK()
-    //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that sets up animation IK (inverse kinematics)
-    //}
+        scanTimer += Time.deltaTime * ScanSpeed;
+        float t = Mathf.PingPong(scanTimer, 1f);
+        if (t < 0.02f || t > 0.98f)
+        {
+            pausing = true;
+        }
+        float smoothT = Mathf.SmoothStep(0f, 1f, t);
+        float angle = Mathf.Lerp(-ScanAngle * 0.5f, ScanAngle * 0.5f, smoothT);
+        transform.rotation = startRotation * Quaternion.Euler(0f, 0f, angle);
+    }
 
     private bool IsTimeUp()
     {
         timer += Time.deltaTime;
-
-        return (timer > StayTime);
+        return timer > StayTime;
     }
 
     private bool IsPlayerClose(Transform transform)
     {
-        var dist = Vector3.Distance(transform.position, player.position);
-
-        return (dist < VisionRange);
+        float dist = Vector2.Distance(transform.position, player.position);
+        return dist < VisionRange;
     }
 }
