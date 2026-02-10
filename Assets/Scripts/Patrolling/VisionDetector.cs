@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class VisionDetector : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class VisionDetector : MonoBehaviour
     [Header("Vision Settings")]
     public float DetectionRange = 3f;
     public float VisionAngle = 90f;
+
+    public float RestartDistance = 0.5f;
 
     private void OnDrawGizmos()
     {
@@ -46,7 +49,10 @@ public class VisionDetector : MonoBehaviour
         {
             if (PlayerInAngle(ref players))
             {
-                PlayerIsVisible(ref players);
+                if (PlayerIsVisible(ref players))
+                {
+                    CheckCloseDistance(players);
+                }
             }
         }
 
@@ -106,6 +112,18 @@ public class VisionDetector : MonoBehaviour
             return false;
 
         return hit.collider.transform == target;
+    }
+    private void CheckCloseDistance(List<Transform> players)
+    {
+        foreach (Transform player in players)
+        {
+            float distance = Vector2.Distance(transform.position, player.position);
+
+            if (distance <= RestartDistance)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+        }
     }
 }
 
