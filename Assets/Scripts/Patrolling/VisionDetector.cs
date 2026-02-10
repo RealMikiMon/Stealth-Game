@@ -14,22 +14,23 @@ public class VisionDetector : MonoBehaviour
 
     public float RestartDistance = 0.5f;
 
-    private void OnDrawGizmos()
+    private LineRenderer lr;
+    public int segments = 20;
+
+    private void Start()
     {
-        Vector2 forward = transform.right;
+        lr = GetComponent<LineRenderer>();
+        if (lr == null)
+            lr = gameObject.AddComponent<LineRenderer>();
 
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(transform.position, DetectionRange);
+        lr.positionCount = segments + 3;
 
-        Gizmos.color = Color.yellow;
-
-        var dir1 = Quaternion.AngleAxis(VisionAngle / 2f, Vector3.forward) * forward;
-        Gizmos.DrawRay(transform.position, dir1 * DetectionRange);
-
-        var dir2 = Quaternion.AngleAxis(-VisionAngle / 2f, Vector3.forward) * forward;
-        Gizmos.DrawRay(transform.position, dir2 * DetectionRange);
-
-        Gizmos.color = Color.white;
+        lr.useWorldSpace = true;
+        lr.startWidth = 0.03f;
+        lr.endWidth = 0.03f;
+        lr.material = new Material(Shader.Find("Sprites/Default"));
+        lr.startColor = new Color(1f, 1f, 0f, 0.4f);
+        lr.endColor = new Color(1f, 1f, 0f, 0.4f);
     }
 
     private void Update()
@@ -37,8 +38,28 @@ public class VisionDetector : MonoBehaviour
         bool playerDetected = DetectPlayers().Length > 0;
         GetComponent<Animator>().SetBool("IsChasing", playerDetected);
 
-        if (playerDetected)
-            Debug.Log("Player DETECTED!");
+        DrawVisionCone();
+    }
+
+    private void DrawVisionCone()
+    {
+        if (lr == null) return;
+
+        Vector3 startPos = transform.position;
+        Vector3 forward = transform.right;
+
+        float halfAngle = VisionAngle / 2f;
+
+        lr.SetPosition(0, startPos);
+
+        for (int i = 0; i <= segments; i++)
+        {
+            float angle = -halfAngle + (VisionAngle / segments) * i;
+            Vector3 dir = Quaternion.Euler(0, 0, angle) * forward;
+            lr.SetPosition(i + 1, startPos + dir * DetectionRange);
+        }
+
+        lr.SetPosition(segments + 2, startPos);
     }
 
     private Transform[] DetectPlayers()
@@ -113,6 +134,7 @@ public class VisionDetector : MonoBehaviour
 
         return hit.collider.transform == target;
     }
+
     private void CheckCloseDistance(List<Transform> players)
     {
         foreach (Transform player in players)
@@ -126,4 +148,3 @@ public class VisionDetector : MonoBehaviour
         }
     }
 }
-
