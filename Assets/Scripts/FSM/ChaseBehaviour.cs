@@ -4,7 +4,6 @@ public class ChaseBehaviour : StateMachineBehaviour
 {
     public float Speed = 2;
     public float VisionRange;
-
     private Transform player;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

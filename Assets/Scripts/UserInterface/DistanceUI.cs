@@ -15,7 +15,6 @@ public class DistanceUI : MonoBehaviour
     void Update()
     {
         if (player == null || distanceText == null) return;
-
         distanceText.text = $"Steps: {player.DistanceTraveled:F1}";
     }
 }
