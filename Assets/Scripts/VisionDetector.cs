@@ -4,16 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class VisionDetector : MonoBehaviour
 {
-    [Header("Layers")]
     public LayerMask WhatIsPlayer;
     public LayerMask WhatIsVisible;
-
-    [Header("Vision Settings")]
     public float DetectionRange = 3f;
     public float VisionAngle = 90f;
-
     [SerializeField] private float restartDistance;
-
     private LineRenderer lr;
     public int segments = 20;
 
@@ -23,9 +18,7 @@ public class VisionDetector : MonoBehaviour
         if (lr == null)
         {
             lr = gameObject.AddComponent<LineRenderer>();
-
             lr.positionCount = segments + 3;
-
             lr.useWorldSpace = true;
             lr.startWidth = 0.03f;
             lr.endWidth = 0.03f;
@@ -48,35 +41,28 @@ public class VisionDetector : MonoBehaviour
         {
             SetConeColor(new Color(1f, 1f, 0f, 0.4f));
         }
-
         DrawVisionCone();
     }
 
     private void DrawVisionCone()
     {
         if (lr == null) return;
-
         Vector3 startPos = transform.position;
         Vector3 forward = transform.right;
-
         float halfAngle = VisionAngle / 2f;
-
         lr.SetPosition(0, startPos);
-
         for (int i = 0; i <= segments; i++)
         {
             float angle = -halfAngle + (VisionAngle / segments) * i;
             Vector3 dir = Quaternion.Euler(0, 0, angle) * forward;
             lr.SetPosition(i + 1, startPos + dir * DetectionRange);
         }
-
         lr.SetPosition(segments + 2, startPos);
     }
 
     private Transform[] DetectPlayers()
     {
         List<Transform> players = new List<Transform>();
-
         if (PlayerInRange(ref players))
         {
             if (PlayerInAngle(ref players))
@@ -87,14 +73,12 @@ public class VisionDetector : MonoBehaviour
                 }
             }
         }
-
         return players.ToArray();
     }
 
     private bool PlayerInRange(ref List<Transform> players)
     {
         Collider2D[] playerColliders = Physics2D.OverlapCircleAll(transform.position, DetectionRange, WhatIsPlayer);
-
         foreach (var item in playerColliders)
         {
             players.Add(item.transform);
@@ -105,7 +89,6 @@ public class VisionDetector : MonoBehaviour
     private bool PlayerInAngle(ref List<Transform> players)
     {
         Vector2 forward = transform.right;
-
         for (int i = players.Count - 1; i >= 0; i--)
         {
             Vector2 targetDir = players[i].position - transform.position;
@@ -116,7 +99,6 @@ public class VisionDetector : MonoBehaviour
                 players.RemoveAt(i);
             }
         }
-
         return players.Count > 0;
     }
 
@@ -129,7 +111,6 @@ public class VisionDetector : MonoBehaviour
                 players.RemoveAt(i);
             }
         }
-
         return players.Count > 0;
     }
 
@@ -144,9 +125,7 @@ public class VisionDetector : MonoBehaviour
             WhatIsVisible | WhatIsPlayer
         );
 
-        if (!hit.collider)
-            return false;
-
+        if (!hit.collider) return false;
         return hit.collider.transform == target;
     }
 
@@ -155,7 +134,6 @@ public class VisionDetector : MonoBehaviour
         foreach (Transform player in players)
         {
             float distance = Vector2.Distance(transform.position, player.position);
-
             if (distance <= restartDistance)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

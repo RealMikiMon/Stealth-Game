@@ -5,14 +5,10 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
     private float speed = 5.0f;
-
     Rigidbody2D rigidbody;
     private bool isMoving;
-
     public int Score = 2000;
-
     public bool IsMoving => isMoving;
-
     private Vector2 lastPosition;
     public float DistanceTraveled;
 
@@ -25,12 +21,9 @@ public class PlayerMovement : MonoBehaviour
     public void OnMove(InputValue value)
     {
         var moveDir = value.Get<Vector2>();
-
         Vector2 velocity = moveDir * speed;
         rigidbody.linearVelocity = velocity;
-
         isMoving = (velocity.magnitude > 0.01f);
-
         if (isMoving)
         {
             float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;

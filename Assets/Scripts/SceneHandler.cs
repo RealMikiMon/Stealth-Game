@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 public class SceneHandler : MonoBehaviour
 {
     public static SceneHandler Instance;
-
     private void Awake()
     {
         if (Instance == null)
@@ -39,8 +38,6 @@ public class SceneHandler : MonoBehaviour
 
     public void OnEscape()
     {
-        Debug.Log("EXIT");
         Application.Quit();
-        Debug.Log("Nigga");
     }
 }

@@ -6,7 +6,6 @@ public class EnemyController : MonoBehaviour
     public Transform PointB;
     public float Speed = 2f;
     public float ArriveDistance = 0.1f;
-
     private Transform currentTarget;
 
     private void Start()
