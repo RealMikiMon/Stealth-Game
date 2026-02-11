@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 348654446}
   - component: {fileID: 348654445}
   m_Layer: 5
-  m_Name: TextEnding (1)
+  m_Name: FinalText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -268,7 +268,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Total Points:  '
+  m_text: FinalText
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -543,6 +543,7 @@ GameObject:
   - component: {fileID: 2137077896}
   - component: {fileID: 2137077895}
   - component: {fileID: 2137077899}
+  - component: {fileID: 2137077900}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -645,7 +646,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75db253a1f0777a4fadc671cab8cfb88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FinalScore
-  scoreText: {fileID: 348654445}
+--- !u!114 &2137077900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137077894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de78bd2625c75294387bc72526fdbb58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FinalDistanceUI
+  timeText: {fileID: 348654445}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

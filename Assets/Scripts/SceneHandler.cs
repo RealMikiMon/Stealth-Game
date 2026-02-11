@@ -37,9 +37,10 @@ public class SceneHandler : MonoBehaviour
         ReloadScene();
     }
 
-    public void OnExit()
+    public void OnEscape()
     {
         Debug.Log("EXIT");
         Application.Quit();
+        Debug.Log("Nigga");
     }
 }
