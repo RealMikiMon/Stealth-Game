@@ -34,7 +34,7 @@ public class SceneHandler : MonoBehaviour
 
     public void OnEnter()
     {
-        ChangeScene();
+        ReloadScene();
     }
 
     public void OnExit()
