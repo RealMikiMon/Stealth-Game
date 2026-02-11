@@ -11,18 +11,10 @@ public class TimerUI : MonoBehaviour
    
     void Update()
     {
-        timerTime -= Time.deltaTime;
+        timerTime += Time.deltaTime;
         int minutes = Mathf.FloorToInt(timerTime / 60);
         int seconds = Mathf.FloorToInt(timerTime % 60);
         timerText.text = string.Format("{0:00}:{1:00}",minutes,seconds);
-        Lose();
-    }
-    private void Lose()
-    {
-        if (timerTime <= 0)
-        {
-            SceneHandler.Instance.ReloadScene();
-        }
     }
 
 }

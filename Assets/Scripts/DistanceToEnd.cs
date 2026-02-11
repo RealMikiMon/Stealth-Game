@@ -1,10 +1,12 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 public class DistanceToEnd : MonoBehaviour
 {
     [SerializeField] private Transform player, point;
     [SerializeField] private TextMeshProUGUI distanceText;
     private float distance;
+
     private void Update()
     {
         CalculatedDistance();
@@ -14,7 +16,7 @@ public class DistanceToEnd : MonoBehaviour
     private void CalculatedDistance()
     {
         distance = (point.transform.position.x - player.transform.position.x) + (point.transform.position.y - player.transform.position.y);
-        distanceText.text = "Objective" + distance.ToString();
+        distanceText.text = $"Objective: {distance.ToString():F1}";
     }
 
     private void Win()
@@ -23,5 +25,6 @@ public class DistanceToEnd : MonoBehaviour
         {
             SceneHandler.Instance.ChangeScene();
         }
+
     }
 }
