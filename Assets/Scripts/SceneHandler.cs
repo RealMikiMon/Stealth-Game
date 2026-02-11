@@ -36,7 +36,7 @@ public class SceneHandler : MonoBehaviour
         ReloadScene();
     }
 
-    public void OnEscape()
+    public void OnExit()
     {
         Application.Quit();
     }
