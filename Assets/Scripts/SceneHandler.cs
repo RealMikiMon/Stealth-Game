@@ -37,8 +37,9 @@ public class SceneHandler : MonoBehaviour
         ChangeScene();
     }
 
-    public void OnExit()
+    public void OnEscape()
     {
         Application.Quit();
+        Debug.Log("Nigga");
     }
 }

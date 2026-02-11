@@ -7,8 +7,8 @@ public class TimerUI : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] float timerTime;
-    
-   
+    public float CurrentTime => timerTime;
+
     void Update()
     {
         timerTime += Time.deltaTime;
