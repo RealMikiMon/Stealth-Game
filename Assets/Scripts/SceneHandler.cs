@@ -39,6 +39,7 @@ public class SceneHandler : MonoBehaviour
 
     public void OnExit()
     {
+        Debug.Log("EXIT");
         Application.Quit();
     }
 }
