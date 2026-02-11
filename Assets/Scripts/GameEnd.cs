@@ -9,7 +9,6 @@ public class GameEnd : MonoBehaviour
         TimerUI timer = FindObjectOfType<TimerUI>();
         if (timer == null)
         {
-            Debug.LogError("No se encontró TimerUI en la escena");
             return;
         }
         PlayerPrefs.SetFloat("FinalTime", timer.CurrentTime);
