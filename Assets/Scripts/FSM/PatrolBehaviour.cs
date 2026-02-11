@@ -11,16 +11,12 @@ public class PatrolBehaviour : StateMachineBehaviour
     {
         controller = animator.GetComponent<EnemyController>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
         animator.SetBool("IsPatroling", true);
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // Moviment real
         controller.PatrolMove();
-
-        // Condició per canviar a Chase
         if (Vector2.Distance(animator.transform.position, player.position) < VisionRange)
         {
             animator.SetBool("IsChasing", true);

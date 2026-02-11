@@ -6,11 +6,9 @@ public class EnemyPatrol : MonoBehaviour
     public Transform PointB;
     public Transform EdgeDetectionPoint;
     public LayerMask WhatIsGround;
-
     public float Speed = 2f;
     public float ArriveDistance = 0.1f;
     public float WallCheckDistance = 0.5f;
-
     private Transform currentTarget;
 
     void Start()
@@ -21,13 +19,11 @@ public class EnemyPatrol : MonoBehaviour
     void Update()
     {
         MoveTowardsTarget();
-
         if (ReachedTarget())
         {
             SwitchTarget();
             Flip();
         }
-
         if (WallDetected())
         {
             Flip();

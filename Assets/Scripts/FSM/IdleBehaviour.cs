@@ -2,21 +2,16 @@ using UnityEngine;
 
 public class IdleBehaviour : StateMachineBehaviour
 {
-    [Header("Idle")]
     public float StayTime = 3f;
     public float VisionRange = 5f;
-
-    [Header("Scan (2D)")]
     public float ScanAngle = 90f;       
     public float ScanSpeed = 1.5f;      
     public float EdgePause = 0.4f;      
     public float SmoothFactor = 2f;     
-
     private float timer;
     private float scanTimer;
     private float pauseTimer;
     private bool pausing;
-
     private Transform player;
     private Quaternion startRotation;
 
@@ -26,7 +21,6 @@ public class IdleBehaviour : StateMachineBehaviour
         scanTimer = 0f;
         pauseTimer = 0f;
         pausing = false;
-
         player = GameObject.FindGameObjectWithTag("Player").transform;
         startRotation = animator.transform.rotation;
     }
@@ -34,10 +28,8 @@ public class IdleBehaviour : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Scan(animator.transform);
-
         bool playerClose = IsPlayerClose(animator.transform);
         bool timeUp = IsTimeUp();
-
         animator.SetBool("IsChasing", playerClose);
         animator.SetBool("IsPatroling", timeUp);
     }
@@ -54,7 +46,6 @@ public class IdleBehaviour : StateMachineBehaviour
             }
             return;
         }
-
         scanTimer += Time.deltaTime * ScanSpeed;
         float t = Mathf.PingPong(scanTimer, 1f);
         if (t < 0.02f || t > 0.98f)
