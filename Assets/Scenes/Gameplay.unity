@@ -508,7 +508,7 @@ MonoBehaviour:
     m_Bits: 768
   DetectionRange: 2
   VisionAngle: 90
-  RestartDistance: 0.5
+  restartDistance: 3
   segments: 20
 --- !u!95 &503711695
 Animator:
@@ -1289,7 +1289,7 @@ MonoBehaviour:
     m_Bits: 768
   DetectionRange: 2
   VisionAngle: 90
-  RestartDistance: 0.5
+  restartDistance: 1
   segments: 20
 --- !u!1 &704710741
 GameObject:
@@ -1316,7 +1316,7 @@ Transform:
   m_GameObject: {fileID: 704710741}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.6938322, w: 0.7201367}
-  m_LocalPosition: {x: 6.18, y: -3.78, z: 0}
+  m_LocalPosition: {x: 6.4, y: -3.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5479,7 +5479,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 859790c2-e08b-4e07-b02e-cf592191654f
+  m_DefaultActionMap: UI
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &2047161155
